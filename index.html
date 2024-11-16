@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>QR Payment Generator</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        input { padding: 10px; font-size: 16px; }
+        button { padding: 10px 20px; font-size: 16px; }
+        #qrcode { margin-top: 20px; }
+    </style>
+</head>
+<body>
+    <h1>QR Payment Generator</h1>
+    <input type="number" id="amount" placeholder="Enter amount" min="0" step="0.01">
+    <button onclick="generateQR()">Generate QR Code</button>
+    <div id="qrcode"></div>
+
+    <!-- Include QRCode.js library -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        function generateQR() {
+            var amount = document.getElementById('amount').value;
+            if (!amount) {
+                alert('Please enter an amount.');
+                return;
+            }
+            var url = window.location.origin + window.location.pathname.replace('index.html', '') + 'pay.html?amount=' + encodeURIComponent(amount);
+            document.getElementById('qrcode').innerHTML = '';
+            new QRCode(document.getElementById('qrcode'), url);
+        }
+    </script>
+</body>
+</html>
