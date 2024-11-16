@@ -4,14 +4,18 @@
     <meta charset="UTF-8">
     <title>Payment Page</title>
     <style>
-        body { font-family: Arial,sans-serif; background-color: #65AAD1; text-align: center; margin-top: 50px; }
+        body { font-family: Arial, sans-serif; background-color: #65AAD1; text-align: center; margin-top: 50px; }
         .amount { font-size: 48px; color: green; }
-        
+        button { padding: 10px 20px; font-size: 16px; margin: 10px; }
     </style>
 </head>
 <body>
     <h1>Amount to be Paid</h1>
     <div class="amount" id="displayAmount"></div>
+    <div>
+        <button id="approveBtn">Approve</button>
+        <button id="denyBtn">Deny</button>
+    </div>
 
     <script>
         function getQueryParam(param) {
@@ -25,6 +29,15 @@
         } else {
             document.getElementById('displayAmount').innerText = 'No amount specified.';
         }
+
+        document.getElementById('approveBtn').addEventListener('click', function() {
+            var passwordPageUrl = 'password.html?amount=' + encodeURIComponent(amount);
+            window.location.href = passwordPageUrl;
+        });
+
+        document.getElementById('denyBtn').addEventListener('click', function() {
+            window.location.href = 'transaction-denied.html';
+        });
     </script>
 </body>
 </html>
