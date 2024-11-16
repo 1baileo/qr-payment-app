@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Payment Page</title>
+    <style>
+        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
+        .amount { font-size: 48px; color: green; }
+    </style>
+</head>
+<body>
+    <h1>Amount to be Paid</h1>
+    <div class="amount" id="displayAmount"></div>
+
+    <script>
+        function getQueryParam(param) {
+            var params = new URLSearchParams(window.location.search);
+            return params.get(param);
+        }
+
+        var amount = getQueryParam('amount');
+        if (amount) {
+            document.getElementById('displayAmount').innerText = '$' + amount;
+        } else {
+            document.getElementById('displayAmount').innerText = 'No amount specified.';
+        }
+    </script>
+</body>
+</html>
