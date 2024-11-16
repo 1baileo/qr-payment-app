@@ -4,10 +4,28 @@
     <meta charset="UTF-8">
     <title>QR Payment Generator</title>
     <style>
-        body { font-family: Arial, sans-serif; text-align: center; margin-top: 50px; }
-        input { padding: 10px; font-size: 16px; }
-        button { padding: 10px 20px; font-size: 16px; }
-        #qrcode { margin-top: 20px; }
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input {
+            padding: 10px;
+            font-size: 16px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 16px;
+        }
+        #qrcode {
+            margin: 20px auto 0; /* Adjusted margins */
+            width: 200px; /* Set a specific width */
+        }
+        /* Ensure the QR code image is centered */
+        #qrcode img {
+            display: block;
+            margin: 0 auto;
+        }
     </style>
 </head>
 <body>
@@ -27,7 +45,12 @@
             }
             var url = window.location.origin + window.location.pathname.replace('index.html', '') + 'pay.html?amount=' + encodeURIComponent(amount);
             document.getElementById('qrcode').innerHTML = '';
-            new QRCode(document.getElementById('qrcode'), url);
+            new QRCode(document.getElementById('qrcode'), {
+                text: url,
+                width: 200,   // Set width
+                height: 200,  // Set height
+                correctLevel: QRCode.CorrectLevel.H
+            });
         }
     </script>
 </body>
